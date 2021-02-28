@@ -3,14 +3,6 @@
 # Use this script to install Cloudera Manager 6.3 on a clean system
 # Follow the Cloudera Manager GUI for creating a CDH cluster
 
-# Setting up some variables
-
-config_file=config.ini
-
-cm_server_host=$(grep cm.host ${config_file} | awk -F'=' '{print $2}')
-
-ntp_server=$(grep ntp.server ${config_file} | awk -F'=' '{print $2}')
-
 
 # Configure a local Repository for Cloudera Manager and CDH
 
@@ -24,13 +16,13 @@ yum makecache
 
 #echo "[cloudera-cdh]
 #name = Cloudera CDH, Version
-#baseurl = http://c902mnx09/repos/jenkins/BDA_CSTL/GA/CDH_6.3/CDH-6.3.0/
+#baseurl = http://server/repos/jenkins/BDA_CSTL/GA/CDH_6.3/CDH-6.3.0/
 #gpgcheck = 1" > /etc/yum.repos.d/cloudera-cdh.repo
 
 # Setting up MySql repository
 #echo "[mysql56-community]
 #name=MySQL 5.6 Community Server
-#baseurl=http://c902mnx09.gpfs.net/repos/repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64
+#baseurl=http://server/repos/repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64
 #enabled=1
 #:gpgcheck=0" > /etc/yum.repos.d/mysql-community.repo
 
@@ -160,7 +152,7 @@ EOF
 
 echo "[mysql56-community]
 name=MySQL 5.6 Community Server
-baseurl=http://c902mnx09.gpfs.net/repos/repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64
+baseurl=http://server/repos/repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64
 enabled=1
 gpgcheck=0" > /etc/yum.repos.d/mysql-community.repo
 
@@ -207,7 +199,7 @@ sudo /opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm dbpassword
 # Setting up a CDH cluster
 echo "[cloudera-cdh]
 name = Cloudera CDH, Version
-baseurl = http://c902mnx09/repos/jenkins/BDA_CSTL/GA/CDH_6.3/CDH-6.3.0/
+baseurl = http://server/repos/jenkins/BDA_CSTL/GA/CDH_6.3/CDH-6.3.0/
 gpgcheck = 0" > /etc/yum.repos.d/cloudera-cdh.repo
 
 
